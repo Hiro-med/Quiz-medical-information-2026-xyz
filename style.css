@@ -1,0 +1,187 @@
+/* --- 1. 基本設定（ズレ防止の魔法） --- */
+* {
+    box-sizing: border-box; /* 内側の余白を計算に含める */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f0f2f5;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    display: flex;
+    justify-content: center; /* 画面の真ん中に置く */
+    padding: 20px 10px;
+}
+
+/* --- 2. 白枠のコンテナ（ここがはみ出しの境界線） --- */
+#app-container {
+    display: block;        /* flex をやめて block にすると、中身が縦に並びます */
+    width: 95%;
+    max-width: 500px; /* スマホで見やすい最大幅 */
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    /* 中身がはみ出さないようにガード */ 
+}
+
+/* --- 3. クイズ画面のレイアウト --- */
+#quiz-screen, #home-screen, #mode-selection, #result-screen {
+    width: 100%; /* 親の白枠いっぱいに広げる */
+    display: block;
+}
+
+/* 非表示の設定（これが一番大事）*/
+.hidden {
+    display: none !important; /* hidden がついているものは絶対に消す */
+}
+
+/* --- 4. 問題文とボタン（左寄せ＆枠内収容） --- */
+#question {
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #333;
+    word-wrap: break-word; /* 長い単語を折り返す */
+}
+
+#choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+/* 選択肢ボタンを枠内に収める */
+.choice-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.choice-btn:hover {
+    background-color: #f8f9fa;
+    border-color: #007bff;
+}
+
+/* 非表示設定 */
+.hidden {
+    display: none !important;
+}
+
+/* 操作用ボタン（次へ・終了） */
+/*#quiz-controls {
+    margin-top: 25px;
+    width: 100%;
+}*/
+
+.next-btn{
+    background-color: #ffc107; /* 注意を引く黄色 */
+    color: #212529;
+    font-weight: bold;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+}
+
+.next-btn:hover {
+    background-color: #b39200; /* 少し濃い青色 */
+}
+
+
+.finish-early-btn,.quit-btn{
+    margin-top: 30px !important;
+    background-color: #6c757d;    /* 落ち着いたグレーに変更（もし青いなら） */
+    color: white !important;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* マウスが乗った時に色を濃くする */
+.finish-early-btn,.quit-btn:hover {
+    background-color: #121416; /* 少し濃い青色 */
+}
+
+
+/* モード選択ボタンの基本スタイル */
+.mode-btn {
+    background-color: #007bff; /* 元の青色 */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* 色の変化をなめらかにする */
+}
+
+/* マウスが乗った時に色を濃くする */
+.mode-btn:hover {
+    background-color: #0056b3; /* 少し濃い青色 */
+}
+
+/* 追加ボタン専用のスタイル */
+.add-btn {
+    display: block !important;
+    width: 100%;
+    background-color: #28a745; /* 鮮やかな緑色 */
+    color: white;              /* 文字は白 */
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* 少し浮かせる */
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+/* ボタンを押したときやマウスを乗せたときの反応 */
+.add-btn:hover {
+    background-color: #218838; /* 少し濃い緑 */
+}
+
+.add-btn:active {
+    transform: translateY(2px); /* 押した時に少し凹む演出 */
+}
+
+/* リンクの下線を消す */
+#add-question-container a {
+    text-decoration: none; /* 下線を消す */
+    display: block;       /* リンクの範囲をボタン全体に広げる */
+}
+
+#app-container #next-btn {
+    display: none; /* JSで制御するため初期は非表示 */
+    width: 100%;
+    padding: 16px !important;
+    background-color: #ffc107 !important; /* 目立つ黄色 */
+    color: #000 !important;              /* 文字を黒に固定 */
+    border: none !important;
+    border-radius: 10px !important;
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* ホバー時の設定 */
+#app-container #next-btn:hover {
+    background-color: #e0a800 !important;
+    transform: scale(1.02); /* ほんの少し大きくして押しやすく */
+}

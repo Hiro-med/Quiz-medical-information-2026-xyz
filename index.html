@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>検定対策5択アプリ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        
+        <div id="mode-selection">
+            <h1>検定対策クイズ</h1>
+            <p>まずはモードを選んでください</p>
+            <button class="mode-btn" onclick="setMode('10questions')">10問モード</button>
+            <button class="mode-btn" onclick="setMode('endless')">エンドレスモード</button>
+            <div id="add-question-container" style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfXIBRnr3jA3KJKI2UFv_sAKP4qdFa4zcX_uVO1NoleMuG6Og/viewform" target="_blank">
+                    <button class="add-btn">＋ 新しい問題を追加する</button>
+                </a>
+            </div>
+        </div>
+
+        <div id="home-screen" class="hidden">
+            <p>ジャンルを選んでください</p>
+            <div id="genre-buttons"></div>
+        </div>
+
+        <div id="quiz-screen" class="hidden">
+            <div id="question"></div>
+            <div id="question-image-container" class="hidden">
+                <img id="question-image" src="" alt="問題画像" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
+            </div>
+            <div id="choices"></div>
+            <div id="feedback"></div>
+            <div id="explanation-container" class="hidden">
+                <p id="explanation-text"></p>
+            </div>
+            <div id="quiz-controls">
+                <button id="next-btn" onclick="nextQuestion()" style="display:none;">次の問題へ</button>
+                <button id="finish-early-btn" class="quit-btn" onclick="showResult()">終了して結果を見る</button>
+            </div>
+        </div>
+
+        <div id="result-screen" class="hidden">
+            <h1>試験結果</h1>
+            <div id="result-detail" class="result-box"></div>
+            <button class="mode-btn" onclick="goToHome()">ジャンル選択に戻る</button>
+        </div>
+
+    </div> <script src="script.js"></script>
+</body>
+</html>
