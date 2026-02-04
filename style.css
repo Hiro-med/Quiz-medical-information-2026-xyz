@@ -185,3 +185,22 @@ body {
     background-color: #e0a800 !important;
     transform: scale(1.02); /* ほんの少し大きくして押しやすく */
 }
+
+/* 文字の選択を禁止（アプリのような操作感にする） */
+body {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent; /* タップ時の青い枠を消す */
+}
+
+/* ボタンの押し心地をアップ */
+button:active {
+    transform: scale(0.95);
+    transition: 0.1s;
+}
+
+/* 画像がはみ出さないように調整 */
+#question-image-container img {
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
