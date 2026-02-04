@@ -204,3 +204,24 @@ button:active {
     border: 2px solid #ddd;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
+/* style.css に追加 */
+body {
+    font-size: 18px; /* 全体の文字を大きく */
+}
+
+#question {
+    font-size: 22px; /* 問題文をさらに強調 */
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+button {
+    padding: 15px 20px; /* ボタンを押しやすく大きく */
+    font-size: 18px;
+}
+
+#question-image {
+    width: 100%;    /* 横幅いっぱいに表示 */
+    height: auto;
+}
